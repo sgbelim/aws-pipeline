@@ -8,7 +8,7 @@ import {
 import {SecretValue} from "@aws-cdk/core";
 import {BuildSpec, LinuxBuildImage, PipelineProject} from "@aws-cdk/aws-codebuild";
 
-export class PipelineStack extends cdk.Stack {
+export class PipelineStackV1 extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
