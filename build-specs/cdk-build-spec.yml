@@ -7,9 +7,9 @@ phases:
       - npm install
   build:
     commands:
-      - npm run test
       - npm run build
       - npm run cdk -- synth
+      - npm run test
 
 artifacts:
   base-directory: cdk.out
