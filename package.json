@@ -23,6 +23,9 @@
   "dependencies": {
     "@aws-cdk/core": "1.123.0",
     "@aws-cdk/aws-budgets" : "1.123.0",
+    "@aws-cdk/aws-codepipeline" : "1.123.0",
+    "@aws-cdk/aws-codepipeline-actions" : "1.123.0",
+    "@aws-cdk/aws-codebuild" : "1.123.0",
     "source-map-support": "^0.5.16"
   }
 }
