@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Empty Stack 1`] = `
+exports[`Pipeline Stack 1`] = `
 Object {
   "Resources": Object {
     "CdkBuildProject9382C38D": Object {
@@ -23,7 +23,7 @@ Object {
           ],
         },
         "Source": Object {
-          "BuildSpec": "build-spec/cdk-build-spec.yml",
+          "BuildSpec": "build-specs/cdk-build-spec.yml",
           "Type": "CODEPIPELINE",
         },
       },
@@ -306,7 +306,7 @@ Object {
                   "PollForSourceChanges": false,
                   "Repo": "aws-pipeline",
                 },
-                "Name": "PipelineSource",
+                "Name": "Pipeline_Source",
                 "OutputArtifacts": Array [
                   Object {
                     "Name": "SourceOutput",
@@ -353,9 +353,235 @@ Object {
             ],
             "Name": "Build",
           },
+          Object {
+            "Actions": Array [
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Deploy",
+                  "Owner": "AWS",
+                  "Provider": "CloudFormation",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "ActionMode": "CREATE_UPDATE",
+                  "Capabilities": "CAPABILITY_NAMED_IAM",
+                  "RoleArn": Object {
+                    "Fn::GetAtt": Array [
+                      "PipelinePipelineUpdateRoleAA43880D",
+                      "Arn",
+                    ],
+                  },
+                  "StackName": "PipelineStack",
+                  "TemplatePath": "CdkBuildOutput::PipelineStack.template.json",
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "CdkBuildOutput",
+                  },
+                ],
+                "Name": "Pipeline_Update",
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelinePipelineUpdateCodePipelineActionRoleF10AA166",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+            ],
+            "Name": "Pipeline_Update",
+          },
         ],
       },
       "Type": "AWS::CodePipeline::Pipeline",
+    },
+    "PipelinePipelineUpdateCodePipelineActionRoleDefaultPolicy024C1709": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "iam:PassRole",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelinePipelineUpdateRoleAA43880D",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucket22248F97",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucket22248F97",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "cloudformation:CreateStack",
+                "cloudformation:DescribeStack*",
+                "cloudformation:GetStackPolicy",
+                "cloudformation:GetTemplate*",
+                "cloudformation:SetStackPolicy",
+                "cloudformation:UpdateStack",
+                "cloudformation:ValidateTemplate",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":cloudformation:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":stack/PipelineStack/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelinePipelineUpdateCodePipelineActionRoleDefaultPolicy024C1709",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelinePipelineUpdateCodePipelineActionRoleF10AA166",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelinePipelineUpdateCodePipelineActionRoleF10AA166": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":root",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelinePipelineUpdateRoleAA43880D": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "cloudformation.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelinePipelineUpdateRoleDefaultPolicyF5EA7F30": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucket22248F97",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucket22248F97",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "*",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelinePipelineUpdateRoleDefaultPolicyF5EA7F30",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelinePipelineUpdateRoleAA43880D",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
     },
     "PipelineRoleD68726F7": Object {
       "Properties": Object {
@@ -421,6 +647,16 @@ Object {
                 ],
               },
             },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelinePipelineUpdateCodePipelineActionRoleF10AA166",
+                  "Arn",
+                ],
+              },
+            },
           ],
           "Version": "2012-10-17",
         },
@@ -433,7 +669,7 @@ Object {
       },
       "Type": "AWS::IAM::Policy",
     },
-    "PipelineSourcePipelineSourceWebhookResource52EE763D": Object {
+    "PipelineSourcePipelineSourceWebhookResource7B23E466": Object {
       "Properties": Object {
         "Authentication": "GITHUB_HMAC",
         "AuthenticationConfiguration": Object {
@@ -446,7 +682,7 @@ Object {
           },
         ],
         "RegisterWithThirdParty": true,
-        "TargetAction": "PipelineSource",
+        "TargetAction": "Pipeline_Source",
         "TargetPipeline": Object {
           "Ref": "PipelineC660917D",
         },
