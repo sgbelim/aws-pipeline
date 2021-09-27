@@ -28,6 +28,9 @@
     "@aws-cdk/aws-codepipeline" : "1.123.0",
     "@aws-cdk/aws-codepipeline-actions" : "1.123.0",
     "@aws-cdk/aws-codebuild" : "1.123.0",
+    "@aws-cdk/aws-lambda" : "1.123.0",
+    "@aws-cdk/aws-apigatewayv2" : "1.123.0",
+    "@aws-cdk/aws-apigatewayv2-integrations" : "1.123.0",
     "source-map-support": "^0.5.16"
   }
 }
