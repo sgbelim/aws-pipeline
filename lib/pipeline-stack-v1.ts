@@ -104,9 +104,11 @@ export class PipelineStackV1 extends cdk.Stack {
                     templatePath: this.cdkBuildOutput.atPath(`${serviceStack.stackName}.template.json`),
                     adminPermissions: true,
                     parameterOverrides: {
-                        ...serviceStack.serviceCode.assign(this.serviceBuildOutput.s3Location)
+                        ...serviceStack.serviceCode.assign(
+                            this.serviceBuildOutput.s3Location
+                        ),
                     },
-                    extraInputs: [this.serviceBuildOutput]
+                    extraInputs: [this.serviceBuildOutput],
                 })
             ]
         })
