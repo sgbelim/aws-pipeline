@@ -24,3 +24,6 @@ const testStage = pipelineStackNew.addServiceStage(serviceStackTest, "Test")
 const prodStage = pipelineStackNew.addServiceStage(serviceStackProd, "Prod")
 
 pipelineStackNew.addBillingStackToStage(billingStack, prodStage)
+pipelineStackNew.addServiceIntegrationTestStage(
+    testStage,
+    serviceStackTest.serviceEndpointOutput.importValue)

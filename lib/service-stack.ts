@@ -1,4 +1,5 @@
 import {
+    CfnOutput,
     Construct,
     Stack,
     StackProps,
@@ -19,6 +20,7 @@ interface ServiceStackProps extends StackProps {
 export class ServiceStack extends Stack {
 
     public readonly serviceCode: CfnParametersCode;
+    public readonly serviceEndpointOutput: CfnOutput;
 
     constructor(scope: Construct, id: string, props: ServiceStackProps) {
         super(scope, id, props);
@@ -33,11 +35,17 @@ export class ServiceStack extends Stack {
             description: `Generated on ${new Date().toISOString()}`,
         })
 
-        new HttpApi(this, 'ApiGatewayService', {
+        const httpApi = new HttpApi(this, 'ApiGatewayService', {
             defaultIntegration: new LambdaProxyIntegration({
                 handler: lambda
             }),
             apiName: `MyService${props.stageName}`
+        })
+
+        this.serviceEndpointOutput = new CfnOutput(this, 'ApiEndpointOutput', {
+            exportName: `ServiceEndpoint${props.stageName}`,
+            value: httpApi.apiEndpoint,
+            description: "Api Endpoint"
         })
 
     }
