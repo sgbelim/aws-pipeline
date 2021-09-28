@@ -12,5 +12,5 @@ new BillingStack(app, 'BillingStack', {
     emailAddress: "salimgbelim@gmail.com"
 });
 
-//const serviceStackProd = new ServiceStack(app, 'ServiceStackProd')
-//pipelineStack.addServiceState(serviceStackProd, "Prod")
+const serviceStackProd = new ServiceStack(app, 'ServiceStackProd')
+pipelineStackNew.addServiceState(serviceStackProd, "Prod")
