@@ -1,11 +1,11 @@
 import * as cdk from '@aws-cdk/core';
-import {Code, Function, Runtime} from "@aws-cdk/aws-lambda";
+import {CfnParametersCode, Code, Function, Runtime} from "@aws-cdk/aws-lambda";
 import {HttpApi} from "@aws-cdk/aws-apigatewayv2";
 import {LambdaProxyIntegration} from "@aws-cdk/aws-apigatewayv2-integrations";
 
 export class ServiceStack extends cdk.Stack {
 
-    public readonly serviceCode: Code;
+    public readonly serviceCode: CfnParametersCode;
 
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
