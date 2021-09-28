@@ -9,7 +9,7 @@ import {SecretValue} from "@aws-cdk/core";
 import {BuildSpec, LinuxBuildImage, PipelineProject} from "@aws-cdk/aws-codebuild";
 import {ServiceStack} from "./service-stack";
 
-export class PipelineStackV1 extends cdk.Stack {
+export class PipelineStackV2 extends cdk.Stack {
 
     public readonly pipeline: Pipeline;
     public readonly cdkBuildOutput: Artifact;
