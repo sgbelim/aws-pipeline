@@ -3,6 +3,7 @@ import * as cdk from '@aws-cdk/core';
 import * as Pipeline from '../lib/pipeline-stack-new';
 import {ServiceStack} from "../lib/service-stack";
 import {PipelineStackNew} from "../lib/pipeline-stack-new";
+import {BillingStack} from "../lib/billing-stack";
 
 test('Pipeline Stack', () => {
 
@@ -33,3 +34,27 @@ test("Adding service state", () => {
     }))
 });
 
+test("Adding billing stack to a stage", () => {
+    // Arrange
+    const app = new cdk.App();
+    const serviceStack = new ServiceStack(app, 'ServiceStack')
+    const pipelineStackNew = new PipelineStackNew(app, 'PipelineStack')
+    const billingStack = new BillingStack(app, 'BillingStack', {
+        budgetAmount: 5,
+        emailAddress: "test@test.com"
+    })
+    const testStage = pipelineStackNew.addServiceStage(serviceStack, "Test");
+
+    // Act
+    pipelineStackNew.addBillingStackToStage(billingStack, testStage)
+
+    // Assert
+    expectCDK(pipelineStackNew).to(
+        haveResourceLike("AWS::CodePipeline::Pipeline", {
+            Stages: arrayWith(objectLike({
+                Actions: arrayWith(objectLike({
+                    Name: "Billing_Update"
+                }))
+            }))
+        }))
+});

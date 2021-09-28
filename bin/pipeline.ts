@@ -13,4 +13,7 @@ const billingStack = new BillingStack(app, 'BillingStack', {
 });
 
 const serviceStackProd = new ServiceStack(app, 'ServiceStackProd')
-pipelineStackNew.addServiceStage(serviceStackProd, "Prod")
+
+const prodStage = pipelineStackNew.addServiceStage(serviceStackProd, "Prod")
+
+pipelineStackNew.addBillingStackToStage(billingStack, prodStage)
