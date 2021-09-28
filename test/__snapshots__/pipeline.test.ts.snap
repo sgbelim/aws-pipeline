@@ -488,7 +488,7 @@ Object {
                     ],
                   },
                   "StackName": "PipelineStack",
-                  "TemplatePath": "CdkBuildOutput::PipelineStack.template.json",
+                  "TemplatePath": "CdkBuildOutput::PipelineStackV2.template.json",
                 },
                 "InputArtifacts": Array [
                   Object {
