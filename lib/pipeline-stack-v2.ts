@@ -86,7 +86,7 @@ export class PipelineStackV2 extends cdk.Stack {
                 new CloudFormationCreateUpdateStackAction({
                     actionName: "Pipeline_Update",
                     stackName: "PipelineStack",
-                    templatePath: this.cdkBuildOutput.atPath('PipelineStack.template.json'),
+                    templatePath: this.cdkBuildOutput.atPath('PipelineStackV2.template.json'),
                     adminPermissions: true
                 })
             ]
@@ -104,11 +104,9 @@ export class PipelineStackV2 extends cdk.Stack {
                     templatePath: this.cdkBuildOutput.atPath(`${serviceStack.stackName}.template.json`),
                     adminPermissions: true,
                     parameterOverrides: {
-
-
                         ...serviceStack.serviceCode.assign(
                             this.serviceBuildOutput.s3Location
-                        ),
+                        )
                     },
                     extraInputs: [this.serviceBuildOutput],
                 })

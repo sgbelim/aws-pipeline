@@ -12,7 +12,6 @@ import {
 import {HttpApi} from "@aws-cdk/aws-apigatewayv2";
 import {LambdaProxyIntegration} from "@aws-cdk/aws-apigatewayv2-integrations";
 
-
 export class ServiceStack extends Stack {
 
     public readonly serviceCode: CfnParametersCode;
