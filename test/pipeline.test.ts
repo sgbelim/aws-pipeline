@@ -20,7 +20,9 @@ test('Pipeline Stack', () => {
 test("Adding service state", () => {
     // Arrange
     const app = new cdk.App();
-    const serviceStack = new ServiceStack(app, 'ServiceStack')
+    const serviceStack = new ServiceStack(app, 'ServiceStack', {
+        stageName: "Test"
+    })
     const pipelineStack = new PipelineStackNew(app, 'PipelineStack')
 
     // Act
@@ -37,7 +39,9 @@ test("Adding service state", () => {
 test("Adding billing stack to a stage", () => {
     // Arrange
     const app = new cdk.App();
-    const serviceStack = new ServiceStack(app, 'ServiceStack')
+    const serviceStack = new ServiceStack(app, 'ServiceStack', {
+        stageName: "Test"
+    })
     const pipelineStackNew = new PipelineStackNew(app, 'PipelineStack')
     const billingStack = new BillingStack(app, 'BillingStack', {
         budgetAmount: 5,

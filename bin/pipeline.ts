@@ -12,8 +12,15 @@ const billingStack = new BillingStack(app, 'BillingStack', {
     emailAddress: "salimgbelim@gmail.com"
 });
 
-const serviceStackProd = new ServiceStack(app, 'ServiceStackProd')
+const serviceStackTest = new ServiceStack(app, 'ServiceStackTest', {
+    stageName: "Test"
+})
 
+const serviceStackProd = new ServiceStack(app, 'ServiceStackProd', {
+    stageName: "Prod"
+})
+
+const testStage = pipelineStackNew.addServiceStage(serviceStackTest, "Test")
 const prodStage = pipelineStackNew.addServiceStage(serviceStackProd, "Prod")
 
 pipelineStackNew.addBillingStackToStage(billingStack, prodStage)
