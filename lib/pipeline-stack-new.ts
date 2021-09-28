@@ -9,7 +9,7 @@ import {SecretValue} from "@aws-cdk/core";
 import {BuildSpec, LinuxBuildImage, PipelineProject} from "@aws-cdk/aws-codebuild";
 import {ServiceStack} from "./service-stack";
 
-export class PipelineStackV2 extends cdk.Stack {
+export class PipelineStackNew extends cdk.Stack {
 
     public readonly pipeline: Pipeline;
     public readonly cdkBuildOutput: Artifact;
@@ -85,8 +85,8 @@ export class PipelineStackV2 extends cdk.Stack {
             actions: [
                 new CloudFormationCreateUpdateStackAction({
                     actionName: "Pipeline_Update",
-                    stackName: "PipelineStackV2",
-                    templatePath: this.cdkBuildOutput.atPath('PipelineStackV2.template.json'),
+                    stackName: "PipelineStackNew",
+                    templatePath: this.cdkBuildOutput.atPath('PipelineStackNew.template.json'),
                     adminPermissions: true
                 })
             ]

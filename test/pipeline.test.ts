@@ -1,6 +1,6 @@
 import {SynthUtils} from '@aws-cdk/assert';
 import * as cdk from '@aws-cdk/core';
-import * as Pipeline from '../lib/pipeline-stack-v2';
+import * as Pipeline from '../lib/pipeline-stack-new';
 
 test('Pipeline Stack', () => {
 
@@ -8,7 +8,7 @@ test('Pipeline Stack', () => {
     const app = new cdk.App();
 
     // Act
-    const stack = new Pipeline.PipelineStackV2(app, 'MyTestStack');
+    const stack = new Pipeline.PipelineStackNew(app, 'MyTestStack');
 
     // Assert
     expect(SynthUtils.toCloudFormation(stack)).toMatchSnapshot();

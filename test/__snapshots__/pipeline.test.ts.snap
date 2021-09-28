@@ -487,8 +487,8 @@ Object {
                       "Arn",
                     ],
                   },
-                  "StackName": "PipelineStackV2",
-                  "TemplatePath": "CdkBuildOutput::PipelineStackV2.template.json",
+                  "StackName": "PipelineStackNew",
+                  "TemplatePath": "CdkBuildOutput::PipelineStackNew.template.json",
                 },
                 "InputArtifacts": Array [
                   Object {
@@ -582,7 +582,7 @@ Object {
                     Object {
                       "Ref": "AWS::AccountId",
                     },
-                    ":stack/PipelineStackV2/*",
+                    ":stack/PipelineStackNew/*",
                   ],
                 ],
               },
