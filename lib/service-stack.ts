@@ -1,5 +1,4 @@
 import {
-    CfnParameter,
     Construct,
     Stack,
     StackProps,
@@ -21,10 +20,7 @@ export class ServiceStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
-        this.serviceCode = Code.fromCfnParameters({
-            bucketNameParam: new CfnParameter(this, 'ServiceLambdaBucket'),
-            objectKeyParam: new CfnParameter(this, 'ServiceLambdaBucketObject'),
-        });
+        this.serviceCode = Code.fromCfnParameters();
 
         const lambda = new Function(this, 'ServiceLambda', {
             runtime: Runtime.NODEJS_14_X,
