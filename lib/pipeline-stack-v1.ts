@@ -72,7 +72,5 @@ export class PipelineStackV1 extends cdk.Stack {
                 })
             ]
         })
-
-
     }
 }
