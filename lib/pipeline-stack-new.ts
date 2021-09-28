@@ -127,7 +127,6 @@ export class PipelineStackNew extends cdk.Stack {
                 adminPermissions: true
             })
         )
-
     }
 
     public addServiceIntegrationTestStage(stage: IStage, serviceEndpoint: string) {
