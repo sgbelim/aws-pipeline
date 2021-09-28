@@ -93,7 +93,7 @@ export class PipelineStackNew extends cdk.Stack {
         })
     }
 
-    public addServiceState(serviceStack: ServiceStack, stageName: string) {
+    public addServiceStage(serviceStack: ServiceStack, stageName: string) {
 
         this.pipeline.addStage({
             stageName: stageName,
