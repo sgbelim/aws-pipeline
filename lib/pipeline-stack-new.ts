@@ -129,13 +129,13 @@ export class PipelineStackNew extends cdk.Stack {
         )
     }
 
-    public addServiceIntegrationTestStage(stage: IStage, serviceEndpoint: string) {
+    public addServiceIntegrationTestToStage(stage: IStage, serviceEndpoint: string) {
 
         stage.addAction(
             new CodeBuildAction({
-                actionName: 'Integration_test',
+                actionName: 'Integration_Tests',
                 input: this.serviceSourceOutput,
-                project: new PipelineProject(this, 'ServiceIntegrationTestProject', {
+                project: new PipelineProject(this, 'ServiceIntegrationTestsProject', {
                     environment: {
                         buildImage: LinuxBuildImage.STANDARD_5_0
                     },
