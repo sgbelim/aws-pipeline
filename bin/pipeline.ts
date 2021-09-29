@@ -7,7 +7,7 @@ import {ServiceStack} from "../lib/service-stack";
 
 const app = new cdk.App();
 const pipelineStackNew = new PipelineStackNew(app, 'PipelineStackNew', {});
-const billingStack = new BillingStack(app, 'BillingStack', {
+const billingStack = new BillingStack(app, 'BillingStackNew', {
     budgetAmount: 5,
     emailAddress: "salimgbelim@gmail.com"
 });

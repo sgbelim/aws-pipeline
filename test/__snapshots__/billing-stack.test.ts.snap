@@ -3,7 +3,7 @@
 exports[`Billing Stack 1`] = `
 Object {
   "Resources": Object {
-    "BudgetED13AE41": Object {
+    "BudgetBudgetNew50BD65B3": Object {
       "Properties": Object {
         "Budget": Object {
           "BudgetLimit": Object {

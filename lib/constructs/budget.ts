@@ -10,7 +10,7 @@ export class Budget extends Construct {
     constructor(scope: Construct, id: string, props: BudgetProps) {
         super(scope, id);
 
-        new CfnBudget(this, 'Budget', {
+        new CfnBudget(this, 'BudgetNew', {
             budget: {
                 budgetLimit: {amount: props.budgetAmount, unit: 'USD'},
                 budgetName: 'Monthly Budget',
